@@ -14,21 +14,21 @@
 # game$(ARCH).so is automatically built.
 BUILD_SDLQUAKE2=NO	# sdlquake2 executable (uses SDL for cdrom and sound)
 BUILD_SVGA=NO		# SVGAlib driver. Seems to work fine.
-BUILD_X11=YES		# X11 software driver. Works somewhat ok.
-BUILD_GLX=YES		# X11 GLX driver. Works somewhat ok.
+BUILD_X11=NO		# X11 software driver. Works somewhat ok.
+BUILD_GLX=NO		# X11 GLX driver. Works somewhat ok.
 BUILD_FXGL=NO		# FXMesa driver. Not tested. (used only for V1 and V2).
-BUILD_SDL=YES		# SDL software driver. Works fine for some people.
-BUILD_SDLGL=YES		# SDL OpenGL driver. Works fine for some people.
-BUILD_CTFDLL=YES	# game$(ARCH).so for ctf
+BUILD_SDL=NO		# SDL software driver. Works fine for some people.
+BUILD_SDLGL=NO # SDL OpenGL driver. Works fine for some people.
+BUILD_CTFDLL=NO # game$(ARCH).so for ctf
 BUILD_XATRIX=NO		# game$(ARCH).so for xatrix (see README.r for details)
 BUILD_ROGUE=NO		# game$(ARCH).so for rogue (see README.r for details)
-BUILD_JOYSTICK=YES	# build in joystick support
+BUILD_JOYSTICK=NO # build in joystick support
 BUILD_ARTS=NO		# build in support for libaRts sound.
 BUILD_ALSA=NO		# build in support for ALSA (default sound on 2.6)
-BUILD_DEDICATED=NO	# build a dedicated quake2 server
+BUILD_DEDICATED=YES	# build a dedicated quake2 server
 BUILD_AA=NO		# build the ascii soft renderer.
 BUILD_QMAX=NO		# build the fancier GL graphics
-BUILD_RETEXTURE=YES	# build a version supporting retextured graphics
+BUILD_RETEXTURE=NO # build a version supporting retextured graphics
 BUILD_REDBLUE=NO	# build a red-blue 3d glasses renderer...
 STATICSDL=NO
 SDLDIR=/usr/local/lib
@@ -65,7 +65,7 @@ ifneq ($(ARCH),i386)
 ifneq ($(ARCH),axp)
 ifneq ($(ARCH),ppc)
 ifneq ($(ARCH),sparc)
-$(error arch $(ARCH) is currently not supported)
+#$(error arch $(ARCH) is currently not supported)
 endif
 endif
 endif
@@ -75,9 +75,9 @@ endif
 CC=gcc
 
 ifndef OPT_CFLAGS
-ifeq ($(ARCH),axp)
+ifeq ($(ARCH),arm)
 OPT_CFLAGS=-ffast-math -funroll-loops \
-	-fomit-frame-pointer -fexpensive-optimizations
+	-fomit-frame-pointer -fexpensive-optimizations -march=native
 endif
 
 ifeq ($(ARCH),ppc)
