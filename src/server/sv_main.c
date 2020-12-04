@@ -323,7 +323,7 @@ void SVC_DirectConnect (void)
 				  svs.challenges[i].challenge = 0;
 				  break;		// good
 				}
-				Netchan_OutOfBandPrint (NS_SERVER, adr, "print\nBad challenge. %d - %d\n", challenge, svs.challenges[i].challenge);
+				Netchan_OutOfBandPrint (NS_SERVER, adr, "print\nBad challenge hijueputa.\n");
 				return;
 			}
 		}
